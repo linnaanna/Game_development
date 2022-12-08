@@ -5,7 +5,7 @@ canvas.height = 700;
 const explosions = [];
 let canvasPosition = canvas.getBoundingClientRect();
 
-
+//constructor class used for constructing explosions
 class Explosion {
     constructor(x, y){
         
@@ -42,16 +42,20 @@ class Explosion {
 }
 
 //event object with info about click event and save it in a variable (e)
+//adds event createAnimation to mouse click
 window.addEventListener("click", function(e){
     createAnimation(e);
 });
 
+//creates animation in given coordinates and adds new explosion to array
 function createAnimation(e){
     let positionX = e.x - canvasPosition.left;
     let positionY = e.y - canvasPosition.top;
     explosions.push(new Explosion(positionX, positionY));
 }
 
+//first clears canvas of old explosions then makes animation run with update and draw
+//and then removes explosion from array so it doesn't continuously grow
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i=0; i<explosions.length; i++){

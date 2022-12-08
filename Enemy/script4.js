@@ -29,6 +29,7 @@ class Enemy {
         this.newX = Math.random() * (canvas.width - this.width);
         this.NewY = Math.random() * (canvas.height - this.height);
         this.frame = 0;
+        //flapping speed for wings
         this.flapSpeed = Math.floor(Math.random() * 3 + 1);
         this.interval = Math.floor(Math.random() * 200 + 50);
         
@@ -56,16 +57,17 @@ class Enemy {
     }
 };
 
-//create new enemies based on class
+//create new enemies based on class and adds them to array
 
 for (let i=0; i<numberOfEnemies; i++){
     enemiesArray.push(new Enemy());
 }
 
-
+//animate enemies
 function animate(){
+    //clears canvas
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
+    //carries out functions for each enemy
     enemiesArray.forEach(enemy => {
         enemy.update();
         enemy.draw();
